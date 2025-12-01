@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuolingoVibes - Learn Languages Faster with Smart Guides</title>
+    <meta name="description" content="Download smart language guides and boost your learning today. Digital PDF guides, study planners, and multilingual resources.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'duolingo-green': '#78C800',
+                        'duolingo-light-green': '#A8E6CF',
+                        'duolingo-orange': '#FF8C42'
+                    },
+                    fontFamily: {
+                        'nunito': ['Nunito', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom animations and styles */
+        .hero-bg {
+            background: linear-gradient(135deg, #78C800 0%, #A8E6CF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./resources/hero-bg.jpg') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #78C800, #FF8C42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .floating-icon {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(0px) rotate(-5deg); }
+            75% { transform: translateY(5px) rotate(3deg); }
+        }
+        
+        .nav-bottom {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid rgba(120, 200, 0, 0.2);
+        }
+        
+        .nav-item.active {
+            color: #78C800;
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: #78C800;
+            border-radius: 50%;
+        }
+        
+        .testimonial-card {
+            display: none;
+        }
+        
+        .testimonial-card:first-child {
+            display: block;
+        }
+        
+        .star-rating {
+            color: #FFD700;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn-primary {
+                min-height: 48px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-poppins bg-gray-50">
+    
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center px-4 py-8">
+        <div class="hero-content text-center text-white max-w-md mx-auto">
+            <div class="mb-6">
+                <img src="./resources/logo.jpg" alt="DuolingoVibes Logo" class="w-16 h-16 mx-auto rounded-full mb-4">
+            </div>
+            
+            <h1 class="hero-title font-nunito font-bold text-3xl md:text-4xl mb-4">
+                <span>Learn</span>
+                <span class="gradient-text">Languages</span>
+                <span>Faster</span>
+                <span>with</span>
+                <span>DuolingoVibes</span>
+            </h1>
+            
+            <p class="hero-subtitle text-lg md:text-xl mb-8 font-medium opacity-90">
+                Download Smart Language Guides & Boost Your Learning Today
+            </p>
+            
+            <button onclick="scrollToProducts()" class="btn-primary bg-white text-duolingo-green px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-h-[48px]">
+                Explore Guides
+            </button>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-md mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <div class="text-4xl animate-bounce">🦉</div>
+                <div class="text-4xl animate-pulse">📚</div>
+                <div class="text-4xl animate-spin">✨</div>
+            </div>
+            
+            <h2 class="font-nunito font-bold text-2xl mb-4 text-gray-800">
+                About DuolingoVibes
+            </h2>
+            
+            <p class="text-gray-600 leading-relaxed">
+                We help language learners improve faster with fun, friendly digital tools designed to complement your Duolingo journey. Our guides are mobile-optimized and instantly downloadable.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Featured Products Section -->
+    <section id="products" class="py-16 px-4 bg-gray-50">
+        <div class="max-w-md mx-auto">
+            <h2 class="font-nunito font-bold text-2xl text-center mb-8 text-gray-800">
+                Featured Digital Products
+            </h2>
+            
+            <div class="grid grid-cols-1 gap-6 stagger-children">
+                <!-- Product Card 1 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover cursor-pointer" 
+                     data-title="Spanish Vocabulary Mastery"
+                     data-image="./resources/product-spanish-vocab.jpg"
+                     data-description="Master 500+ essential Spanish words with our interactive vocabulary guide. Includes audio pronunciation, visual aids, and spaced repetition exercises."
+                     data-price="9.99"
+                     data-id="spanish-vocab">
+                    <img src="./resources/product-spanish-vocab.jpg" alt="Spanish Vocabulary Guide" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-nunito font-bold text-lg mb-2 text-gray-800">Spanish Vocabulary Mastery</h3>
+                        <p class="text-gray-600 text-sm mb-4">500+ essential words with audio pronunciation</p>
+                        <button class="btn-primary bg-duolingo-green text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]">
+                            Get This Guide
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover cursor-pointer"
+                     data-title="French Grammar Cheat Sheet"
+                     data-image="./resources/product-french-grammar.jpg"
+                     data-description="Complete French grammar reference with verb conjugations, sentence structure, and common expressions. Perfect for quick reference."
+                     data-price="7.99"
+                     data-id="french-grammar">
+                    <img src="./resources/product-french-grammar.jpg" alt="French Grammar Guide" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-nunito font-bold text-lg mb-2 text-gray-800">French Grammar Cheat Sheet</h3>
+                        <p class="text-gray-600 text-sm mb-4">Complete grammar reference with verb conjugations</p>
+                        <button class="btn-primary bg-duolingo-green text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]">
+                            Get This Guide
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover cursor-pointer"
+                     data-title="German Travel Phrasebook"
+                     data-image="./resources/product-german-travel.jpg"
+                     data-description="Essential German phrases for travelers with phonetic pronunciations. Cover airports, hotels, restaurants, and emergency situations."
+                     data-price="8.99"
+                     data-id="german-travel">
+                    <img src="./resources/product-german-travel.jpg" alt="German Travel Guide" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-nunito font-bold text-lg mb-2 text-gray-800">German Travel Phrasebook</h3>
+                        <p class="text-gray-600 text-sm mb-4">Essential phrases for travelers with pronunciation</p>
+                        <button class="btn-primary bg-duolingo-green text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]">
+                            Get This Guide
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover cursor-pointer"
+                     data-title="Language Learning Study Planner"
+                     data-image="./resources/product-study-planner.jpg"
+                     data-description="Digital study planner designed for language learners. Track progress, set goals, and organize your learning journey with our mobile-optimized planner."
+                     data-price="12.99"
+                     data-id="study-planner">
+                    <img src="./resources/product-study-planner.jpg" alt="Study Planner" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-nunito font-bold text-lg mb-2 text-gray-800">Language Learning Study Planner</h3>
+                        <p class="text-gray-600 text-sm mb-4">Digital planner to organize your language journey</p>
+                        <button class="btn-primary bg-duolingo-green text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]">
+                            Get This Guide
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 5 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover cursor-pointer"
+                     data-title="Japanese Hiragana Mastery"
+                     data-image="./resources/product-japanese-hiragana.jpg"
+                     data-description="Learn Japanese hiragana characters with our comprehensive guide. Includes stroke order, pronunciation guides, and practice exercises."
+                     data-price="10.99"
+                     data-id="japanese-hiragana">
+                    <img src="./resources/product-japanese-hiragana.jpg" alt="Japanese Hiragana Guide" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-nunito font-bold text-lg mb-2 text-gray-800">Japanese Hiragana Mastery</h3>
+                        <p class="text-gray-600 text-sm mb-4">Complete hiragana learning with stroke order</p>
+                        <button class="btn-primary bg-duolingo-green text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]">
+                            Get This Guide
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 6 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden card-hover cursor-pointer"
+                     data-title="Italian Conversation Starters"
+                     data-image="./resources/product-italian-conversation.jpg"
+                     data-description="Master Italian conversation with our collection of essential phrases and dialogue examples. Perfect for beginners and intermediate learners."
+                     data-price="8.99"
+                     data-id="italian-conversation">
+                    <img src="./resources/product-italian-conversation.jpg" alt="Italian Conversation Guide" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-nunito font-bold text-lg mb-2 text-gray-800">Italian Conversation Starters</h3>
+                        <p class="text-gray-600 text-sm mb-4">Essential phrases and dialogue examples</p>
+                        <button class="btn-primary bg-duolingo-green text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]">
+                            Get This Guide
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose DuolingoVibes Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-md mx-auto">
+            <h2 class="font-nunito font-bold text-2xl text-center mb-8 text-gray-800">
+                Why Choose DuolingoVibes?
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="flex items-start space-x-4 fade-in-up">
+                    <div class="text-2xl">⚡</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Quick-learning PDF guides</h3>
+                        <p class="text-gray-600 text-sm">Instantly downloadable and optimized for mobile learning</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4 fade-in-up">
+                    <div class="text-2xl">🎯</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Duolingo-friendly structure</h3>
+                        <p class="text-gray-600 text-sm">Designed to complement your Duolingo learning journey</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4 fade-in-up">
+                    <div class="text-2xl">📱</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Easy to read on your phone</h3>
+                        <p class="text-gray-600 text-sm">Mobile-first design for learning anywhere, anytime</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4 fade-in-up">
+                    <div class="text-2xl">💾</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Instant downloads</h3>
+                        <p class="text-gray-600 text-sm">Get your guides immediately after purchase</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4 fade-in-up">
+                    <div class="text-2xl">🔥</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Boost your streak learning</h3>
+                        <p class="text-gray-600 text-sm">Supplement your daily practice with structured guides</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-16 px-4 bg-gray-50">
+        <div class="max-w-md mx-auto">
+            <h2 class="font-nunito font-bold text-2xl text-center mb-8 text-gray-800">
+                What Our Learners Say
+            </h2>
+            
+            <div class="relative">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="./resources/avatar-sarah.jpg" alt="Sarah" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Sarah M.</h4>
+                            <div class="star-rating text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "The Spanish vocabulary guide helped me learn 500 words in just 3 weeks! Perfect companion to my Duolingo practice."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="./resources/avatar-mike.jpg" alt="Mike" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Mike R.</h4>
+                            <div class="star-rating text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "Love how these guides work perfectly on my phone. The study planner keeps me organized and motivated!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="./resources/avatar-lisa.jpg" alt="Lisa" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Lisa K.</h4>
+                            <div class="star-rating text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "The French grammar cheat sheet is a lifesaver! Quick reference that fits perfectly with my learning style."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="./resources/avatar-alex.jpg" alt="Alex" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Alex T.</h4>
+                            <div class="star-rating text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "These guides are worth every penny. The Japanese hiragana guide made learning characters so much easier!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="./resources/avatar-david.jpg" alt="David" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">David L.</h4>
+                            <div class="star-rating text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">
+                        "Perfect supplement to Duolingo. The conversational guides helped me start speaking with confidence!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Email Capture Section -->
+    <section class="py-16 px-4 bg-duolingo-green text-white">
+        <div class="max-w-md mx-auto text-center">
+            <h2 class="font-nunito font-bold text-2xl mb-4">
+                Get Free Mini Guides Weekly
+            </h2>
+            
+            <p class="mb-8 opacity-90">
+                Join 10,000+ language learners getting free vocabulary lists, grammar tips, and study resources every week.
+            </p>
+            
+            <form id="emailForm" class="space-y-4">
+                <input type="email" 
+                       placeholder="Enter your email address" 
+                       required
+                       class="w-full px-4 py-3 rounded-full text-gray-800 font-medium focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-30 min-h-[48px]">
+                
+                <button type="submit" 
+                        class="w-full bg-white text-duolingo-green px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors duration-300 min-h-[48px]">
+                    Get Free Mini Guides
+                </button>
+            </form>
+            
+            <p class="text-xs mt-4 opacity-75">
+                No spam, unsubscribe anytime. Your email is safe with us.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="max-w-md mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="text-2xl hover:text-duolingo-green transition-colors">📧</a>
+                <a href="#" class="text-2xl hover:text-duolingo-green transition-colors">📘</a>
+                <a href="#" class="text-2xl hover:text-duolingo-green transition-colors">📷</a>
+                <a href="#" class="text-2xl hover:text-duolingo-green transition-colors">🐦</a>
+            </div>
+            
+            <p class="text-sm text-gray-400 mb-2">
+                Not affiliated with Duolingo. All guides are independently created educational resources.
+            </p>
+            
+            <p class="text-sm text-gray-400">
+                © 2024 DuolingoVibes. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Bottom Navigation -->
+    <nav class="nav-bottom fixed bottom-0 left-0 right-0 z-50 pb-safe">
+        <div class="flex justify-around items-center py-3 px-4">
+            <a href="index.html" class="nav-item active flex flex-col items-center space-y-1 text-xs font-medium relative">
+                <span class="text-xl">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="guides.html" class="nav-item flex flex-col items-center space-y-1 text-xs font-medium text-gray-600 hover:text-duolingo-green transition-colors relative">
+                <span class="text-xl">📚</span>
+                <span>Guides</span>
+            </a>
+            <a href="contact.html" class="nav-item flex flex-col items-center space-y-1 text-xs font-medium text-gray-600 hover:text-duolingo-green transition-colors relative">
+                <span class="text-xl">📧</span>
+                <span>Contact</span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- Add bottom padding to account for navigation -->
+    <div class="h-20"></div>
+    
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Smooth scroll to products section
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // Initialize page-specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add stagger animation to product cards
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 100}ms`;
+            });
+        });
+    </script>
+</body>
+</html>
