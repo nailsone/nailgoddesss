@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning Guides - DuolingoVibes</title>
+    <meta name="description" content="Browse our complete collection of digital language learning guides, cheat sheets, and study resources.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'duolingo-green': '#78C800',
+                        'duolingo-light-green': '#A8E6CF',
+                        'duolingo-orange': '#FF8C42'
+                    },
+                    fontFamily: {
+                        'nunito': ['Nunito', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .nav-bottom {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid rgba(120, 200, 0, 0.2);
+        }
+        
+        .nav-item.active {
+            color: #78C800;
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: #78C800;
+            border-radius: 50%;
+        }
+        
+        .filter-btn.active {
+            background: #78C800;
+            color: white;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(120, 200, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-poppins bg-gray-50 pb-20">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-md mx-auto px-4 py-4">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="font-nunito font-bold text-xl text-gray-800">Language Guides</h1>
+                <div class="text-2xl">📚</div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="relative">
+                <input type="text" 
+                       id="searchInput" 
+                       placeholder="Search guides..." 
+                       class="search-input w-full px-4 py-3 pl-10 bg-gray-100 rounded-full focus:outline-none focus:bg-white focus:ring-2 focus:ring-duolingo-green transition-all">
+                <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                    🔍
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Filter Buttons -->
+    <section class="px-4 py-4 bg-white border-b">
+        <div class="max-w-md mx-auto">
+            <div class="flex flex-wrap gap-2" id="filterButtons">
+                <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 transition-all" data-filter="all">
+                    All Guides
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 transition-all" data-filter="spanish">
+                    Spanish
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 transition-all" data-filter="french">
+                    French
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 transition-all" data-filter="german">
+                    German
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 transition-all" data-filter="italian">
+                    Italian
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 transition-all" data-filter="japanese">
+                    Japanese
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 transition-all" data-filter="tools">
+                    Study Tools
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Grid -->
+    <section class="px-4 py-6">
+        <div class="max-w-md mx-auto">
+            <div id="productsGrid" class="space-y-4">
+                
+                <!-- Spanish Vocabulary Mastery -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden" 
+                     data-category="spanish" 
+                     data-title="Spanish Vocabulary Mastery"
+                     data-image="./resources/product-spanish-vocab.jpg"
+                     data-description="Master 500+ essential Spanish words with our interactive vocabulary guide. Includes audio pronunciation, visual aids, and spaced repetition exercises."
+                     data-price="9.99"
+                     data-id="spanish-vocab">
+                    <img src="./resources/product-spanish-vocab.jpg" alt="Spanish Vocabulary Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Spanish Vocabulary Mastery</h3>
+                            <span class="text-duolingo-green font-bold">$9.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">500+ essential words with audio pronunciation and visual aids</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-duolingo-light-green text-duolingo-green px-2 py-1 rounded-full">Spanish</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- French Grammar Cheat Sheet -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="french" 
+                     data-title="French Grammar Cheat Sheet"
+                     data-image="./resources/product-french-grammar.jpg"
+                     data-description="Complete French grammar reference with verb conjugations, sentence structure, and common expressions. Perfect for quick reference."
+                     data-price="7.99"
+                     data-id="french-grammar">
+                    <img src="./resources/product-french-grammar.jpg" alt="French Grammar Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">French Grammar Cheat Sheet</h3>
+                            <span class="text-duolingo-green font-bold">$7.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Complete grammar reference with verb conjugations</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">French</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- German Travel Phrasebook -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="german" 
+                     data-title="German Travel Phrasebook"
+                     data-image="./resources/product-german-travel.jpg"
+                     data-description="Essential German phrases for travelers with phonetic pronunciations. Cover airports, hotels, restaurants, and emergency situations."
+                     data-price="8.99"
+                     data-id="german-travel">
+                    <img src="./resources/product-german-travel.jpg" alt="German Travel Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">German Travel Phrasebook</h3>
+                            <span class="text-duolingo-green font-bold">$8.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Essential phrases for travelers with pronunciation</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">German</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Italian Conversation Starters -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="italian" 
+                     data-title="Italian Conversation Starters"
+                     data-image="./resources/product-italian-conversation.jpg"
+                     data-description="Master Italian conversation with our collection of essential phrases and dialogue examples. Perfect for beginners and intermediate learners."
+                     data-price="8.99"
+                     data-id="italian-conversation">
+                    <img src="./resources/product-italian-conversation.jpg" alt="Italian Conversation Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Italian Conversation Starters</h3>
+                            <span class="text-duolingo-green font-bold">$8.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Essential phrases and dialogue examples</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Italian</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Japanese Hiragana Mastery -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="japanese" 
+                     data-title="Japanese Hiragana Mastery"
+                     data-image="./resources/product-japanese-hiragana.jpg"
+                     data-description="Learn Japanese hiragana characters with our comprehensive guide. Includes stroke order, pronunciation guides, and practice exercises."
+                     data-price="10.99"
+                     data-id="japanese-hiragana">
+                    <img src="./resources/product-japanese-hiragana.jpg" alt="Japanese Hiragana Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Japanese Hiragana Mastery</h3>
+                            <span class="text-duolingo-green font-bold">$10.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Complete hiragana learning with stroke order</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">Japanese</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Language Learning Study Planner -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="tools" 
+                     data-title="Language Learning Study Planner"
+                     data-image="./resources/product-study-planner.jpg"
+                     data-description="Digital study planner designed for language learners. Track progress, set goals, and organize your learning journey with our mobile-optimized planner."
+                     data-price="12.99"
+                     data-id="study-planner">
+                    <img src="./resources/product-study-planner.jpg" alt="Study Planner" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Language Learning Study Planner</h3>
+                            <span class="text-duolingo-green font-bold">$12.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Digital planner to organize your language journey</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Study Tools</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spanish Verb Conjugations -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="spanish" 
+                     data-title="Spanish Verb Conjugations"
+                     data-image="./resources/product-spanish-verbs.jpg"
+                     data-description="Master Spanish verb conjugations with our comprehensive guide. Includes regular and irregular verbs in all tenses with practice exercises."
+                     data-price="8.99"
+                     data-id="spanish-verbs">
+                    <img src="./resources/product-spanish-verbs.jpg" alt="Spanish Verbs Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Spanish Verb Conjugations</h3>
+                            <span class="text-duolingo-green font-bold">$8.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Complete verb conjugation guide with practice</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-duolingo-light-green text-duolingo-green px-2 py-1 rounded-full">Spanish</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- French Pronunciation Guide -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="french" 
+                     data-title="French Pronunciation Guide"
+                     data-image="./resources/product-french-pronunciation.jpg"
+                     data-description="Master French pronunciation with our audio-enhanced guide. Includes phonetic symbols, mouth positions, and practice exercises."
+                     data-price="9.99"
+                     data-id="french-pronunciation">
+                    <img src="./resources/product-french-pronunciation.jpg" alt="French Pronunciation Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">French Pronunciation Guide</h3>
+                            <span class="text-duolingo-green font-bold">$9.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Audio-enhanced pronunciation with phonetic symbols</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">French</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Italian Grammar Essentials -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="italian" 
+                     data-title="Italian Grammar Essentials"
+                     data-image="./resources/product-italian-grammar.jpg"
+                     data-description="Essential Italian grammar rules made simple. Covers nouns, verbs, adjectives, and sentence structure with clear examples."
+                     data-price="7.99"
+                     data-id="italian-grammar">
+                    <img src="./resources/product-italian-grammar.jpg" alt="Italian Grammar Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Italian Grammar Essentials</h3>
+                            <span class="text-duolingo-green font-bold">$7.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Essential grammar rules made simple</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Italian</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Japanese Conversation Practice -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="japanese" 
+                     data-title="Japanese Conversation Practice"
+                     data-image="./resources/product-japanese-conversation.jpg"
+                     data-description="Practice Japanese conversation with real-world dialogues. Includes cultural context, honorifics, and common expressions for daily life."
+                     data-price="9.99"
+                     data-id="japanese-conversation">
+                    <img src="./resources/product-japanese-conversation.jpg" alt="Japanese Conversation Guide" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Japanese Conversation Practice</h3>
+                            <span class="text-duolingo-green font-bold">$9.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Real-world dialogues with cultural context</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">Japanese</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Language Learning Bundle -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="tools" 
+                     data-title="Complete Language Learning Bundle"
+                     data-image="./resources/product-language-bundle.jpg"
+                     data-description="Get all our language learning guides in one comprehensive bundle. Includes vocabulary, grammar, and conversation guides for multiple languages."
+                     data-price="39.99"
+                     data-id="language-bundle">
+                    <img src="./resources/product-language-bundle.jpg" alt="Language Bundle" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Complete Language Learning Bundle</h3>
+                            <div class="text-right">
+                                <span class="text-gray-400 line-through text-sm">$89.99</span>
+                                <span class="text-duolingo-green font-bold block">$39.99</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">All guides in one comprehensive bundle</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-duolingo-orange text-white px-2 py-1 rounded-full">Bundle Deal</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Bundle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vocabulary Flashcards -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden"
+                     data-category="tools" 
+                     data-title="Multi-Language Vocabulary Flashcards"
+                     data-image="./resources/product-flashcards.jpg"
+                     data-description="Digital flashcard set with 1000+ vocabulary words across 5 languages. Includes spaced repetition system and audio pronunciation."
+                     data-price="14.99"
+                     data-id="flashcards">
+                    <img src="./resources/product-flashcards.jpg" alt="Flashcards" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-nunito font-bold text-lg text-gray-800">Multi-Language Flashcards</h3>
+                            <span class="text-duolingo-green font-bold">$14.99</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">1000+ vocabulary words across 5 languages</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Study Tools</span>
+                            <button class="bg-duolingo-green text-white px-4 py-2 rounded-full text-sm font-semibold min-h-[36px]">
+                                Get Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- No Results Message -->
+            <div id="noResults" class="text-center py-12 hidden">
+                <div class="text-6xl mb-4">🔍</div>
+                <h3 class="font-nunito font-bold text-xl text-gray-800 mb-2">No guides found</h3>
+                <p class="text-gray-600">Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bottom Navigation -->
+    <nav class="nav-bottom fixed bottom-0 left-0 right-0 z-50 pb-safe">
+        <div class="flex justify-around items-center py-3 px-4">
+            <a href="index.html" class="nav-item flex flex-col items-center space-y-1 text-xs font-medium text-gray-600 hover:text-duolingo-green transition-colors relative">
+                <span class="text-xl">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="guides.html" class="nav-item active flex flex-col items-center space-y-1 text-xs font-medium relative">
+                <span class="text-xl">📚</span>
+                <span>Guides</span>
+            </a>
+            <a href="contact.html" class="nav-item flex flex-col items-center space-y-1 text-xs font-medium text-gray-600 hover:text-duolingo-green transition-colors relative">
+                <span class="text-xl">📧</span>
+                <span>Contact</span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Search and Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            const noResults = document.getElementById('noResults');
+            const productsGrid = document.getElementById('productsGrid');
+            
+            let currentFilter = 'all';
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                filterProducts();
+            });
+            
+            // Filter button functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentFilter = this.dataset.filter;
+                    filterProducts();
+                });
+            });
+            
+            function filterProducts() {
+                const searchTerm = searchInput.value.toLowerCase();
+                let visibleCount = 0;
+                
+                productCards.forEach(card => {
+                    const title = card.dataset.title.toLowerCase();
+                    const category = card.dataset.category;
+                    const description = card.dataset.description.toLowerCase();
+                    
+                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                    const matchesFilter = currentFilter === 'all' || category === currentFilter;
+                    
+                    if (matchesSearch && matchesFilter) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                        
+                        // Animate in
+                        anime({
+                            targets: card,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            duration: 400,
+                            delay: visibleCount * 50,
+                            easing: 'easeOutQuad'
+                        });
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide no results message
+                if (visibleCount === 0) {
+                    noResults.classList.remove('hidden');
+                    productsGrid.classList.add('hidden');
+                } else {
+                    noResults.classList.add('hidden');
+                    productsGrid.classList.remove('hidden');
+                }
+            }
+            
+            // Initial animation
+            anime({
+                targets: '.product-card',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: anime.stagger(100),
+                duration: 600,
+                easing: 'easeOutQuad'
+            });
+        });
+    </script>
+</body>
+</html>
